@@ -1,10 +1,10 @@
 <template>
-    <h1 class="text-danger">FakeFlix</h1>
+    
 </template>
 
 <script>
     export default {
-        name: "H1"
+        name: "Favorite.vue"
     }
 </script>
 

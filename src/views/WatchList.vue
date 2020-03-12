@@ -1,7 +1,8 @@
 <template>
-  <div class="home">
-    <H1/>
+  <div class="about">
+    <H1></H1>
     <NavBar></NavBar>
+    <p>Page about</p>
   </div>
 </template>
 
