@@ -8,7 +8,7 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                     <b-nav-item to="/favorite">Favoris</b-nav-item>
-                    <b-nav-item to="/about">A voir</b-nav-item>
+                    <b-nav-item to="/watchlist">A voir</b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->

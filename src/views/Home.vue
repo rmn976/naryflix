@@ -1,20 +1,11 @@
 <template>
   <div class="home">
-    <H1/>
-    <NavBar></NavBar>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import H1 from "../components/H1";
-import NavBar from "../components/NavBar";
 
-export default {
-  name: 'Home',
-  components: {
-    H1,
-    NavBar
+  export default {
+    name: 'Home'
   }
-}
 </script>

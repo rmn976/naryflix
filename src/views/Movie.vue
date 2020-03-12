@@ -1,13 +1,10 @@
 <template>
-    <div class="home">
-        <p>Page des favoris</p>
-    </div>
+    <div>Film</div>
 </template>
 
 <script>
-
     export default {
-        name: "Favorite"
+        name: "Movie"
     }
 </script>
 

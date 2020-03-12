@@ -1,8 +1,22 @@
 <template>
   <div id="app">
+    <H1></H1>
+    <NavBar></NavBar>
     <router-view/>
   </div>
 </template>
+
+<script>
+  import H1 from "./components/H1";
+  import NavBar from "./components/NavBar";
+
+  export default {
+    components: {
+      H1,
+      NavBar
+    }
+  }
+</script>
 
 <style>
 #app {
