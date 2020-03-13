@@ -1,8 +1,14 @@
 <template>
   <div id="app">
-    <H1></H1>
-    <NavBar></NavBar>
-    <router-view/>
+    <div class="container-fluid">
+      <H1></H1>
+      <NavBar v-on:begin-search="showFilmList($event)"></NavBar>
+    </div>
+    <div class="container">
+      <router-view/>
+    </div>
+
+
   </div>
 </template>
 
@@ -11,9 +17,32 @@
   import NavBar from "./components/NavBar";
 
   export default {
+    data: function () {
+      return {
+        apiKey: '3343ddbfc8f76de0f8b2c6901a410684',
+        filmList: null
+      }
+    },
     components: {
       H1,
       NavBar
+    },
+    methods: {
+      showFilmList: function (search) {
+        if (this.$router.currentRoute.name != 'Home') {
+          this.$router.push('/');
+        }
+        fetch('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&language=en-US&query=' + search + '&page=1&include_adult=false')
+                .then(result => result.json())
+                .then((json) => {
+                  this.filmList = json.results;
+                  console.log(json.results);
+                })
+                .catch((error) => {
+                  console.error(`Une erreur s'est prduite.`);
+                  console.log(error);
+                });
+      }
     }
   }
 </script>
