@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container-fluid">
       <H1></H1>
-      <NavBar v-on:begin-search="showFilmList($event)"></NavBar>
+      <NavBar v-on:begin-search="showMovieList($event)"></NavBar>
     </div>
     <div class="container">
       <router-view/>
@@ -17,10 +17,10 @@
   import NavBar from "./components/NavBar";
 
   export default {
+    name: "App",
     data: function () {
       return {
-        apiKey: '3343ddbfc8f76de0f8b2c6901a410684',
-        filmList: null
+        moviesFetch: null
       }
     },
     components: {
@@ -28,14 +28,14 @@
       NavBar
     },
     methods: {
-      showFilmList: function (search) {
-        if (this.$router.currentRoute.name != 'Home') {
+      showMovieList: function (search) {
+        if (this.$router.currentRoute.name !== 'Home') {
           this.$router.push('/');
         }
-        fetch('https://api.themoviedb.org/3/search/movie?api_key=' + this.apiKey + '&language=en-US&query=' + search + '&page=1&include_adult=false')
+        fetch('https://api.themoviedb.org/3/search/movie?api_key=3343ddbfc8f76de0f8b2c6901a410684&language=en-US&query=' + search + '&page=1&include_adult=false')
                 .then(result => result.json())
                 .then((json) => {
-                  this.filmList = json.results;
+                  this.moviesFetch = json.results;
                   console.log(json.results);
                 })
                 .catch((error) => {

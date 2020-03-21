@@ -1,13 +1,20 @@
 <template>
-    <div>Film {{ film.original_title }}</div>
+    <div id="movie">
+        <MovieInfo :movie="movie">Film</MovieInfo>
+    </div>
 </template>
 
 <script>
+    import MovieInfo from '../components/MovieInfo.vue'
+
     export default {
-        name: "Movie",
+        name: 'Movie',
+        components: {
+            MovieInfo
+        },
         data: function () {
             return {
-                film: null,
+                movie: null,
                 id: 0
             }
         },
@@ -16,7 +23,7 @@
             fetch('https://api.themoviedb.org/3/movie/' + this.id + '?api_key=3343ddbfc8f76de0f8b2c6901a410684&language=en-US')
                 .then(result => result.json())
                 .then((json) => {
-                    this.film = json;
+                    this.movie = json;
                     console.log(json);
                 })
                 .catch((error) => {

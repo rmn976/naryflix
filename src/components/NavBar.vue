@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="nav">
         <b-navbar toggleable="lg" type="dark" variant="info">
             <b-navbar-brand to="/">Accueil</b-navbar-brand>
 
@@ -25,8 +25,7 @@
 
 <script>
     export default {
-        name: "NavBar",
-        props: ['value']
+        name: "NavBar"
     }
 </script>
 

@@ -1,20 +1,20 @@
 <template>
-  <div class="home">
+  <div id="home">
     <div class="row">
       <div class="col-lg-10">
-        <FilmList v-bind:movies="$parent.filmList"></FilmList>
+        <MovieList :movies="$parent.moviesFetch"></MovieList>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import FilmList from '../components/FilmList.vue'
+  import MovieList from '../components/MovieList.vue'
 
   export default {
     name: 'Home',
     components: {
-      FilmList
+      MovieList
     }
   }
 </script>

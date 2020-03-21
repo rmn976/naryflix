@@ -1,5 +1,7 @@
 <template>
-    <h1 class="text-danger">FakeFlix</h1>
+    <div id="h1">
+        <h1 class="text-danger">FakeFlix</h1>
+    </div>
 </template>
 
 <script>
