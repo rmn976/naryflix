@@ -1,6 +1,6 @@
 <template>
-    <div id="favorite">
-        <p>Page des favoris {{ test }}</p>
+    <div id="favorite" @addFav="addFav">
+        <p>Page des favoris</p>
     </div>
 </template>
 
@@ -15,10 +15,15 @@
             }
         },
         mounted: function () {
-            this.$root.$on('add-fav', () => {
+            /*this.$root.$on('add-fav', id => {
                 console.log('test');
-                this.test = 3;
-            });
+                this.favList.push(id);
+            });*/
+        },
+        methods: {
+            addFav: function (id) {
+                console.log('test', id);
+            },
         }
     }
 </script>
