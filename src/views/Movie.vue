@@ -19,7 +19,7 @@
             }
         },
         mounted: function () {
-            this.id = this.$route.params.id
+            this.id = this.$route.params.id;
             fetch('https://api.themoviedb.org/3/movie/' + this.id + '?api_key=3343ddbfc8f76de0f8b2c6901a410684&language=en-US')
                 .then(result => result.json())
                 .then((json) => {

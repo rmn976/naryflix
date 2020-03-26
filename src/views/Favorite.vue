@@ -1,13 +1,25 @@
 <template>
-    <div class="home">
-        <p>Page des favoris</p>
+    <div id="favorite">
+        <p>Page des favoris {{ test }}</p>
     </div>
 </template>
 
 <script>
 
     export default {
-        name: "Favorite"
+        name: "Favorite",
+        data: function () {
+            return {
+                favList: [],
+                test: null
+            }
+        },
+        mounted: function () {
+            this.$root.$on('add-fav', () => {
+                console.log('test');
+                this.test = 3;
+            });
+        }
     }
 </script>
 
