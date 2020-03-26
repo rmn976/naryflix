@@ -4,17 +4,21 @@ import router from './router'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import VueLodash from 'vue-lodash'
 import lodash from 'lodash'
+import Vuex from 'vuex'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import store from './store'
 
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 Vue.use(VueLodash, { name: 'custom' , lodash: lodash });
+Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app');
