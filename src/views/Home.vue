@@ -14,6 +14,11 @@
 
   export default {
     name: 'Home',
+    created() {
+      if (this.$store.state.userLogged == '') {
+        this.$router.push('/login');
+      }
+    },
     components: {
       MovieList
     },
