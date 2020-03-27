@@ -15,7 +15,7 @@
   export default {
     name: 'Home',
     created() {
-      if (this.$store.state.userLogged == '') {
+      if (this.$store.state.userLogged === false) {
         this.$router.push('/login');
       }
     },
@@ -24,7 +24,7 @@
     },
     computed: {
       search() {
-        return this.$store.state.searchMovie;
+        return this.$store.state.search;
       }
     }
   }

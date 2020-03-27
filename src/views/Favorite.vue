@@ -13,8 +13,8 @@
 
     export default {
         name: "Favorite",
-        created() {
-            if (this.$store.state.userLogged == '') {
+        created: function () {
+            if (this.$store.state.userLogged === false) {
                 this.$router.push('/login');
             } else {
                 this.$store.dispatch('getFavList');

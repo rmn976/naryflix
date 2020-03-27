@@ -14,7 +14,7 @@
   export default {
     name: "WatchList",
     created() {
-      if (this.$store.state.userLogged == '') {
+      if (this.$store.state.userLogged === false) {
         this.$router.push('/login');
       } else {
         this.$store.dispatch('getWatchList');

@@ -6,8 +6,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     apiKey: '3343ddbfc8f76de0f8b2c6901a410684',
+    search: '',
     moviesList: null,
-    searchMovie: '',
+    movie: null,
     requestToken: '',
     username: '',
     password: '',
@@ -15,13 +16,17 @@ export default new Vuex.Store({
     favList: null,
     watchList: null,
     userLogged: false,
+    invalidCredential: false
   },
   mutations: {
+    setSearch(state, term) {
+        state.search = term;
+    },
     setMoviesList(state, term) {
         state.moviesList = term;
     },
-    setSearchMovie(state, term) {
-        state.searchMovie = term;
+    setMovie(state, term) {
+        state.movie = term;
     },
     setRequestToken(state, term) {
         state.requestToken = term;
@@ -44,18 +49,23 @@ export default new Vuex.Store({
     setUserLogged(state, term) {
         state.userLogged = term;
     },
+    setInvalidCredential(state, term) {
+        state.invalidCredential = term;
+    },
   },
   actions: {
-    loadSearchList(context) {
-      fetch('https://api.themoviedb.org/3/search/movie?api_key=' + context.state.apiKey + '&language=en-US&query=' + context.state.searchMovie + '&page=1&include_adult=false')
-          .then(result => result.json())
-          .then((json) => {
-              context.commit('setMoviesList', json.results)
-          })
-          .catch((error) => {
-            console.error(`Une erreur s'est prduite au niveau du search.`);
-            console.log(error);
-          });
+    loadMovieList(context) {
+        if(context.state.search !== '') {
+            fetch('https://api.themoviedb.org/3/search/movie?api_key=' + context.state.apiKey + '&language=en-US&query=' + context.state.search + '&page=1&include_adult=false')
+                .then(result => result.json())
+                .then((json) => {
+                    context.commit('setMoviesList', json.results)
+                })
+                .catch((error) => {
+                    console.error(`Une erreur s'est prduite au niveau du search.`);
+                    console.log(error);
+                });
+        }
     },
     getRequestToken(context, {username, password}) {
         context.commit('setUsername', username);
@@ -82,8 +92,11 @@ export default new Vuex.Store({
             })
         };
         fetch('https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=' + context.state.apiKey, myInit)
-            .then(result => {result.json()})
-            .then( () => {
+            .then(result => result.json())
+            .then( (json) => {
+                if (json.status_code === 30) {
+                    return context.commit('setInvalidCredential', true)
+                }
                 context.dispatch('getSessionId')
             })
             .catch((error) => {
@@ -102,7 +115,7 @@ export default new Vuex.Store({
         fetch('https://api.themoviedb.org/3/authentication/session/new?api_key=' + context.state.apiKey, myInit)
             .then(result => result.json())
             .then((json) => {
-                if (json.success == true) {
+                if (json.success === true) {
                     context.commit('setUserLogged', true);
                     context.commit('setSessionId', json.session_id)
                 }

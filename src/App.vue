@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="container-fluid">
-      <H1></H1>
-      <NavBar></NavBar>
+      <h1 class="text-danger">FakeFlix</h1>
+      <NavBar v-if="userLogged"></NavBar>
     </div>
     <div class="container">
       <router-view/>
@@ -11,13 +11,11 @@
 </template>
 
 <script>
-  import H1 from "./components/H1";
   import NavBar from "./components/NavBar";
 
   export default {
     name: "App",
     components: {
-      H1,
       NavBar
     },
     computed: {
