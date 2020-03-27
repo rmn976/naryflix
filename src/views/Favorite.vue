@@ -1,6 +1,11 @@
 <template>
     <div id="favorite">
-        <p>Page des favoris {{ test }}</p>
+        <div v-for="movie in favList" :key="movie.id">
+            <router-link :to="{ name: 'Movie', params: { id: movie.id }}"  class="img-fluid">
+                <img v-if="movie.poster_path != null" :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path">
+                <img v-else src="../assets/image-non-disponible.png" class="img-fluid">
+            </router-link>
+        </div>
     </div>
 </template>
 
@@ -8,17 +13,17 @@
 
     export default {
         name: "Favorite",
-        data: function () {
-            return {
-                favList: [],
-                test: null
+        created() {
+            if (this.$store.state.userLogged == '') {
+                this.$router.push('/login');
+            } else {
+                this.$store.dispatch('getFavList');
             }
         },
-        mounted: function () {
-            this.$root.$on('add-fav', () => {
-                console.log('test');
-                this.test = 3;
-            });
+        computed: {
+            favList() {
+                return this.$store.state.favList;
+            }
         }
     }
 </script>

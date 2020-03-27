@@ -2,7 +2,8 @@
   <div id="home">
     <div class="row">
       <div class="col-lg-10">
-        <MovieList :movies="$parent.moviesFetch"></MovieList>
+        <p>Recherche de {{ search }}</p>
+        <MovieList></MovieList>
       </div>
     </div>
   </div>
@@ -13,8 +14,18 @@
 
   export default {
     name: 'Home',
+    created() {
+      if (this.$store.state.userLogged == '') {
+        this.$router.push('/login');
+      }
+    },
     components: {
       MovieList
+    },
+    computed: {
+      search() {
+        return this.$store.state.searchMovie;
+      }
     }
   }
 </script>
