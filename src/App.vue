@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <div class="container-fluid">
-      <h1 class="text-danger">FakeFlix</h1>
-      <NavBar v-if="userLogged"></NavBar>
-    </div>
-    <div class="container">
-      <router-view/>
+    <div class="layer" :style="style">
+      <div v-if="userLogged" class="container-fluid p-0 top">
+        <NavBar></NavBar>
+      </div>
+      <div class="container-fluid p-0 bottom">
+        <router-view/>
+      </div>
     </div>
   </div>
 </template>
@@ -21,7 +22,13 @@
     computed: {
       userLogged() {
         return this.$store.state.userLogged;
-      }
+      },
+      style: function () {
+        if (this.$router.currentRoute.name === 'Login') {
+          return `background-color: rgba(0, 0, 0, 0.5)`
+        }
+        return `background-color: rgba(0, 0, 0, 0.8)`
+      },
     },
     watch: {
       userLogged: function () {
@@ -34,24 +41,21 @@
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  #app {
+    background: url("assets/login_background.jpg") repeat;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  .layer {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+  }
+  .top {
+    height: 20%;
+  }
+  .bottom {
+    min-height: 80vh;
+  }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

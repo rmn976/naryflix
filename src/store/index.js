@@ -9,6 +9,7 @@ export default new Vuex.Store({
     search: '',
     moviesList: null,
     movie: null,
+    videoKey: '',
     requestToken: '',
     username: '',
     password: '',
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     setMovie(state, term) {
         state.movie = term;
+    },
+    setVideoKey(state, term) {
+        state.videoKey = term;
     },
     setRequestToken(state, term) {
         state.requestToken = term;
@@ -66,6 +70,17 @@ export default new Vuex.Store({
                     console.log(error);
                 });
         }
+    },
+    getVideo(context) {
+        fetch('https://api.themoviedb.org/3/movie/' + context.state.movie.id + '/videos?api_key=' + context.state.apiKey + '&language=en-US')
+            .then(result => result.json())
+            .then((json) => {
+                context.commit('setVideoKey', json.results[0].key)
+            })
+            .catch((error) => {
+                console.error(`Une erreur s'est prduite au niveau du search.`);
+                console.log(error);
+            });
     },
     getRequestToken(context, {username, password}) {
         context.commit('setUsername', username);
