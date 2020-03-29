@@ -26,7 +26,6 @@
       if (this.$store.state.userLogged === false) {
         this.$router.push('/login');
       }
-      this.$store.dispatch('loadPopularMovies')
     },
     components: {
       MovieList,

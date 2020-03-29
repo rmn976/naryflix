@@ -147,7 +147,8 @@ export default new Vuex.Store({
             .then((json) => {
                 if (json.success === true) {
                     context.commit('setUserLogged', true);
-                    context.commit('setSessionId', json.session_id)
+                    context.commit('setSessionId', json.session_id);
+                    context.dispatch('loadPopularMovies')
                 }
             })
             .catch((error) => {

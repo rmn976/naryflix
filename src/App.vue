@@ -32,7 +32,7 @@
     },
     watch: {
       userLogged: function () {
-        if (this.userLogged == true) {
+        if (this.userLogged === true) {
           this.$router.push('/')
         }
       }

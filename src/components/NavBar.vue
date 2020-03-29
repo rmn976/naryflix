@@ -34,7 +34,7 @@
         },
         methods: {
             debounceSearch: _.debounce( function (term) {
-                if (this.$store.state.userLogged == true) {
+                if (this.$store.state.userLogged === true) {
                     if (this.$router.currentRoute.name !== 'Home') {
                         this.$router.push('/');
                     }

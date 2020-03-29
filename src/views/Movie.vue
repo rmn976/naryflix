@@ -40,6 +40,7 @@
 
 <script>
 
+    import { mapState } from 'vuex'
     export default {
         name: 'Movie',
         created: function () {
@@ -53,29 +54,23 @@
 
         },
         computed: {
-            movie: function () {
-                return this.$store.state.movie
-            },
-            videoKey: function () {
-                return this.$store.state.videoKey
-            },
             movieDate: function () {
                 let date = new Date(this.movie.release_date);
                 let options = {weekday: "long", day: "numeric", month: "long", year: "numeric"};
                 return date.toLocaleDateString("fr-FR", options);
-            },
-            favList: function () {
-                return this.$store.state.favList;
-            },
-            watchList: function () {
-                return this.$store.state.watchList;
             },
             style: function () {
                 return `background-image: url("https://image.tmdb.org/t/p/original${this.movie.backdrop_path}")`
             },
             video: function () {
                 return `https://www.youtube.com/embed/${this.videoKey}?controls=1`
-            }
+            },
+            ...mapState([
+                'movie',
+                'videoKey',
+                'favList',
+                'watchList',
+            ])
         },
         methods: {
             addToFav: function () {

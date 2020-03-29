@@ -1,16 +1,18 @@
 <template>
     <div id="MovieList">
         <h2 class="text-white text-center my-5">Résultats de recherche pour <span class="text-primary">{{ search }}</span></h2>
-        <transition-group name="movie-trans" tag="div" class="d-flex flex-wrap justify-content-center" v-if="moviesList.length !== 0">
-            <span v-for="movie in moviesList" :key="movie.id" class="movie p-1">
-                <router-link :to="{ name: 'Movie', params: { id: movie.id }}">
-                    <img @click="setMovie(movie)" v-if="movie.poster_path != null" :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path">
-                    <img @click="setMovie(movie)" v-else src="../assets/image-non-disponible.png">
-                    <h6>{{ movie.original_title }}</h6>
-                </router-link>
-            </span>
-        </transition-group>
-        <h3 v-else class="text-white text-center">Pas de résultats pour {{ search }}</h3>
+        <div v-if="moviesList !== null">
+            <transition-group name="movie-trans" tag="div" class="d-flex flex-wrap justify-content-center" v-if="moviesList.length !== 0">
+                <span v-for="movie in moviesList" :key="movie.id" class="movie p-1">
+                    <router-link :to="{ name: 'Movie', params: { id: movie.id }}">
+                        <img @click="setMovie(movie)" v-if="movie.poster_path != null" :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path">
+                        <img @click="setMovie(movie)" v-else src="../assets/image-non-disponible.png">
+                        <h6>{{ movie.original_title }}</h6>
+                    </router-link>
+                </span>
+            </transition-group>
+            <h3 v-else class="text-white text-center">Pas de résultats pour {{ search }}</h3>
+        </div>
     </div>
 </template>
 
