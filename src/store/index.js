@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     apiKey: '3343ddbfc8f76de0f8b2c6901a410684',
+    popularList: null,
     search: '',
     moviesList: null,
     movie: null,
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     invalidCredential: false
   },
   mutations: {
+    setPopularList(state, term) {
+        state.popularList = term
+    },
     setSearch(state, term) {
         state.search = term;
     },
@@ -58,6 +62,17 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    loadPopularMovies(context) {
+        fetch('https://api.themoviedb.org/3/discover/movie?api_key=' + context.state.apiKey + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1')
+            .then(result => result.json())
+            .then((json) => {
+                context.commit('setPopularList', json.results)
+            })
+            .catch((error) => {
+                console.error(`Une erreur s'est prduite au niveau du search.`);
+                console.log(error);
+            });
+    },
     loadMovieList(context) {
         if(context.state.search !== '') {
             fetch('https://api.themoviedb.org/3/search/movie?api_key=' + context.state.apiKey + '&language=en-US&query=' + context.state.search + '&page=1&include_adult=false')

@@ -5,6 +5,7 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import VueLodash from 'vue-lodash'
 import lodash from 'lodash'
 import Vuex from 'vuex'
+import VueCarousel from 'vue-carousel'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -14,6 +15,7 @@ Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 Vue.use(VueLodash, { name: 'custom' , lodash: lodash });
 Vue.use(Vuex);
+Vue.use(VueCarousel);
 
 Vue.config.productionTip = false;
 
