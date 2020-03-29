@@ -29,7 +29,9 @@
                     </div>
                     <h4 class="mt-4 mb-3">Résumé</h4>
                     <p class="overview">{{ movie.overview }}</p>
-                    <small>Popularité : {{ movie.popularity }} Note : {{ movie.vote_average }}/10 Nombre de vote : {{ movie.vote_count }}</small>
+                    <small>
+                        Popularité : {{ movie.popularity }} <i class="fas fa-circle mx-2" style="font-size: 0.3em; color: white;"></i> Note : {{ movie.vote_average }}/10 <i class="fas fa-circle mx-2" style="font-size: 0.3em; color: white;"></i> Nombre de vote : {{ movie.vote_count }}
+                    </small>
                 </div>
             </div>
         </div>
@@ -117,7 +119,7 @@
     }
     iframe {
         width: 100%;
-        height: auto;
+        height: 50vh;
     }
     .overview {
         line-height: 150%;

@@ -1,6 +1,6 @@
 <template>
     <div id="MovieList">
-        <h2 class="text-white text-center">Résultats de recherche pour <span class="text-primary">{{ search }}</span></h2>
+        <h2 class="text-white text-center my-5">Résultats de recherche pour <span class="text-primary">{{ search }}</span></h2>
         <div class="d-flex flex-wrap justify-content-center">
             <div v-for="movie in moviesList" :key="movie.id" class="movie p-1">
                 <router-link :to="{ name: 'Movie', params: { id: movie.id }}">

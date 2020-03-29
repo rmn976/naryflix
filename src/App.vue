@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="layer">
+    <div class="layer" :style="style">
       <div v-if="userLogged" class="container-fluid p-0 top">
         <NavBar></NavBar>
       </div>
@@ -22,7 +22,13 @@
     computed: {
       userLogged() {
         return this.$store.state.userLogged;
-      }
+      },
+      style: function () {
+        if (this.$router.currentRoute.name === 'Login') {
+          return `background-color: rgba(0, 0, 0, 0.5)`
+        }
+        return `background-color: rgba(0, 0, 0, 0.8)`
+      },
     },
     watch: {
       userLogged: function () {
@@ -41,7 +47,6 @@
     overflow: hidden;
   }
   .layer {
-    background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
     min-height: 100vh;
