@@ -14,7 +14,7 @@
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                     <b-nav-form>
-                        <b-form-input size="sm" class="mr-sm-2" placeholder="Rechercher" v-on:keyup="debounceSearch($event.target.value)"></b-form-input>
+                        <b-form-input size="sm" class="mr-sm-2" placeholder="Rechercher" v-on:keydown.enter="debounceSearch($event.target.value)" v-on:keyup="debounceSearch($event.target.value)"></b-form-input>
                         <b-button size="sm" class="my-2 my-sm-0" @click="debounceSearch(search)"><i class="fas fa-search"></i></b-button>
                     </b-nav-form>
                 </b-navbar-nav>
