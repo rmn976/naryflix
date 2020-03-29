@@ -110,7 +110,7 @@
         min-height: 90vh;
     }
     .movieLayer {
-        background-color: rgba(15, 15, 15, 0.95);
+        background-color: rgba(15, 15, 15, 0.8);
         width: 100%;
         min-height: 90vh;
     }
