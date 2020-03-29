@@ -1,8 +1,7 @@
 <template>
   <div id="home">
-    <div class="row">
-      <div class="col-lg-10">
-        <p>Recherche de {{ search }}</p>
+    <div class="row m-0">
+      <div class="offset-2 col-8">
         <MovieList></MovieList>
       </div>
     </div>
@@ -21,11 +20,6 @@
     },
     components: {
       MovieList
-    },
-    computed: {
-      search() {
-        return this.$store.state.search;
-      }
     }
   }
 </script>

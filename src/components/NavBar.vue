@@ -1,7 +1,7 @@
 <template>
     <div id="nav">
-        <b-navbar toggleable="lg" type="dark" variant="info">
-            <b-navbar-brand to="/">Accueil</b-navbar-brand>
+        <b-navbar class="w-100" toggleable="lg">
+            <b-navbar-brand to="/"><img src="https://fontmeme.com/permalink/200328/4647fa15c30f81ce7987cb8d6c7ddc02.png" alt=""></b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -42,5 +42,26 @@
 </script>
 
 <style scoped>
+    #nav {
+        height: 100%;
+    }
 
+    nav {
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    img {
+        margin-left: 5%;
+        margin-top: 3%;
+        height: 45px;
+        width: 167px;
+    }
+    #nav a {
+        font-weight: bold;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    #nav a.router-link-exact-active {
+        color: #ffffff;
+    }
 </style>
