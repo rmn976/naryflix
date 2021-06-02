@@ -1,4 +1,6 @@
-# fakeflix
+Réalisation d'une copie de l'interface Netflix en VueJS
+
+Projet examen réalisé losr du Titre RNCP de niveau I Expert en Système d'Information
 
 ## Project setup
 ```
